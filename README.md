@@ -18,8 +18,8 @@ Projeto desenvolvido para a aula de técnicas de programação I da FATEC-SJC, u
 
 | Lista | Status | Branch |
 |:-----:|:----------:|:---------:|
-| 1 | Em andamento | [Atv I](https://github.com/SBittencourt/ListaAtlantis---tecnicas-II/tree/AtvI)  |
-| 2 | Não iniciado | [Atv II](https://github.com/SBittencourt/ListaAtlantis---tecnicas-II/tree/AtvII) |  
+| 1 | Concluído | [Atv I](https://github.com/SBittencourt/ListaAtlantis---tecnicas-II/tree/AtvI)  |
+| 2 | Em andamento | [Atv II](https://github.com/SBittencourt/ListaAtlantis---tecnicas-II/tree/AtvII) |  
 | 3 | Não iniciado | [Atv III](https://github.com/SBittencourt/ListaAtlantis---tecnicas-II/tree/AtvIII) | 
 | 4 | Não iniciado | [Atv IV](https://github.com/SBittencourt/ListaAtlantis---tecnicas-II/tree/AtvIV) |
 | 5 | Não iniciado | [Atv V](https://github.com/SBittencourt/ListaAtlantis---tecnicas-II/tree/AtvV) |
