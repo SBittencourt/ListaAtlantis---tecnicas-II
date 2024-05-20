@@ -1,7 +1,8 @@
 import Processo from "../abstracoes/processo";
 import MenuTipoCadastroCliente from "../menus/menuTipoCadastroCliente";
+import CadastroClienteTitular from "./cadastroClienteTitular";
 
-export default class ExclusaoTitular extends Processo {
+export default class TipoEditarCliente extends Processo {
     constructor() {
         super()
         this.menu = new MenuTipoCadastroCliente()
@@ -12,7 +13,7 @@ export default class ExclusaoTitular extends Processo {
         
         switch (this.opcao) {
             case 1:
-                this.processo = new ExclusaoTitular()
+                this.processo = new TipoEditarCliente()
                 this.processo.processar()
                 break
             default:
