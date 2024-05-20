@@ -2,7 +2,7 @@ import Menu from "../interfaces/menu";
 
 export default class MenuPrincipal implements Menu {
     mostrar(): void {
-        console.log(`****************************`)
+        console.log(`___________________________________`)
         console.log(`| Por favor, selecione uma opção...`)
         console.log(`----------------------`)
         console.log(`| Opções para cliente:`)
@@ -11,7 +11,7 @@ export default class MenuPrincipal implements Menu {
         console.log(`| 2 - Editar cliente`)
         console.log(`| 3 - Listar cliente(s)`)
         console.log(`| 4 - Excluir cliente`)
-        console.log(`****************************`)
+        console.log(`___________________________________`)
         console.log(`| 0 - Sair`)
         console.log(`----------------------`)
     }
