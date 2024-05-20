@@ -3,6 +3,11 @@ import Endereco from "./endereco"
 import Telefone from "./telefone"
 
 export default class Cliente {
+    [x: string]: any
+    setNomeSocial: any
+    setDataNascimento(novaDataNascimento: Date) {
+        throw new Error("Method not implemented.")
+    }
     private nome: string
     private nomeSocial: string
     private dataNascimento: Date

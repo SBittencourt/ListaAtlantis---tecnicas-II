@@ -13,7 +13,7 @@ export default class TipoEditarCliente extends Processo {
         
         switch (this.opcao) {
             case 1:
-                this.processo = new TipoEditarCliente()
+                this.processo = new CadastroClienteTitular()
                 this.processo.processar()
                 break
             default:
