@@ -12,23 +12,43 @@ export default class CadastroClienteDependente extends Processo {
     }
 
     processar(): void {
+        console.clear();
         console.log('Iniciando o cadastro de um novo cliente dependente...');
-        let nome = this.entrada.receberTexto('Qual o nome do novo cliente dependente?');
-        let nomeSocial = this.entrada.receberTexto('Qual o nome social do novo cliente dependente?');
-        let dataNascimento = this.entrada.receberData('Qual a data de nascimento do dependente?');
-        let dependente = new Cliente(nome, nomeSocial, dataNascimento);
 
-        dependente.Endereco = this.titular.Endereco;
+        console.log('Clientes Titulares Cadastrados:');
+        Armazem.InstanciaUnica.Clientes.forEach((cliente, index) => {
+            if (cliente.Titular === undefined) {
+                console.log(`${index + 1}. ${cliente.Nome}`);
+            }
+        });
 
-        this.processo = new CadastrarDocumentosCliente(dependente);
-        this.processo.processar();
+        const indiceSelecionado = this.entrada.receberNumero('Selecione o número do cliente titular para associar o dependente:');
+        const clienteSelecionado = this.obterClienteTitularPorIndice(indiceSelecionado);
 
-        this.titular.Dependentes.push(dependente);
-        dependente.Titular = this.titular;
+        if (clienteSelecionado) {
+            let nome = this.entrada.receberTexto('Qual o nome do novo cliente dependente?');
+            let nomeSocial = this.entrada.receberTexto('Qual o nome social do novo cliente dependente?');
+            let dataNascimento = this.entrada.receberData('Qual a data de nascimento do dependente?');
+            let dependente = new Cliente(nome, nomeSocial, dataNascimento);
 
-        let armazem = Armazem.InstanciaUnica;
-        armazem.Clientes.push(dependente);
+            dependente.Endereco = clienteSelecionado.Endereco;
 
-        console.log('Finalizando o cadastro do cliente dependente...');
+            this.processo = new CadastrarDocumentosCliente(dependente);
+            this.processo.processar();
+
+            clienteSelecionado.Dependentes.push(dependente);
+            dependente.Titular = clienteSelecionado;
+
+            Armazem.InstanciaUnica.Clientes.push(dependente);
+
+            console.log('Finalizando o cadastro do cliente dependente...');
+        } else {
+            console.log('Cliente titular selecionado inválido. O cadastro do cliente dependente não pode ser concluído.');
+        }
+    }
+
+    private obterClienteTitularPorIndice(indice: number): Cliente | undefined {
+        let clientesTitulares: Cliente[] = Armazem.InstanciaUnica.Clientes.filter(cliente => cliente.Titular === undefined);
+        return clientesTitulares[indice - 1];
     }
 }
