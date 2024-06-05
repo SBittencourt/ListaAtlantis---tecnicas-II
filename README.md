@@ -13,7 +13,7 @@
 
 ## Sobre o projeto
 
-Projeto desenvolvido para a aula de técnicas de programação I da FATEC-SJC, utilizando typescript e react.
+Projeto desenvolvido para a aula de técnicas de programação II da FATEC-SJC, utilizando typescript e react.
 
 
 ## Como executar
