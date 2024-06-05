@@ -1,12 +1,14 @@
 <h1 align="center">Listas técnica de programação II - Atlantis 💧</h1>
-<H5 align="center"> Status do projeto: em andamento</H5>
+<H5 align="center"> Status da Atv I: concluída</H5>
+
+<hr> 
 
 <hr> 
 
 ## Sumário
 
 - [Sobre o projeto](#Sobre-o-projeto)
-- [Listas](#Listas)
+- [Como executar](#Como-executar)
 
 
 ## Sobre o projeto
@@ -14,15 +16,19 @@
 Projeto desenvolvido para a aula de técnicas de programação I da FATEC-SJC, utilizando typescript e react.
 
 
-## Listas
+## Como executar
 
-| Lista | Status | Branch |
-|:-----:|:----------:|:---------:|
-| 1 | Em andamento | [Atv I](https://github.com/SBittencourt/ListaAtlantis---tecnicas-II/tree/AtvI)  |
-| 2 | Não iniciado | [Atv II](https://github.com/SBittencourt/ListaAtlantis---tecnicas-II/tree/AtvII) |  
-| 3 | Não iniciado | [Atv III](https://github.com/SBittencourt/ListaAtlantis---tecnicas-II/tree/AtvIII) | 
-| 4 | Não iniciado | [Atv IV](https://github.com/SBittencourt/ListaAtlantis---tecnicas-II/tree/AtvIV) |
-| 5 | Não iniciado | [Atv V](https://github.com/SBittencourt/ListaAtlantis---tecnicas-II/tree/AtvV) |
+Entre na pasta sistema e execute os seguintes comandos no terminal(cmd):
 
+### `npm install`
+
+### `npm install typescript`
+
+### `npx tsc`
+
+### `node .\js\teste\index.js`
+
+<hr>
 
 [➳ Retornar ao início](#Sumário)
+
