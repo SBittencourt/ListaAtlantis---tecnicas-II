@@ -5,36 +5,41 @@ import Impressor from "../interfaces/impressor";
 import Cliente from "../modelos/cliente";
 
 export default class ListagemDependentes extends Processo {
-    private clientes: Cliente[]
-    private impressor!: Impressor
+    private clientes: Cliente[];
+    private impressor!: Impressor;
 
     constructor() {
-        super()
-        this.clientes = Armazem.InstanciaUnica.Clientes
+        super();
+        this.clientes = Armazem.InstanciaUnica.Clientes;
     }
 
     processar(): void {
-        console.clear()
-        console.log('Iniciando a listagem dos clientes titulares e seus dependentes...')
-        this.clientes.forEach(cliente => {
-            if (this.ehTitular(cliente)) {
-                this.impressor = new ImpressaorCliente(cliente)
-                console.log(this.impressor.imprimir())
+        console.clear();
+        console.log('Iniciando a listagem dos clientes titulares e seus dependentes...');
 
-                if (cliente.Dependentes.length > 0) {
-                    console.log('Dependentes:')
-                    cliente.Dependentes.forEach(dependente => {
-                        this.impressor = new ImpressaorCliente(dependente)
-                        console.log(this.impressor.imprimir())
-                    })
-                } else {
-                    console.log('Este titular não possui dependentes.')
-                }
+        console.log('Clientes Titulares:');
+        this.clientes.forEach((cliente, index) => {
+            if (cliente.Titular === undefined) {
+                console.log(`${index + 1}. ${cliente.Nome}`);
             }
-        })
+        });
+
+        const indiceTitularSelecionado = this.entrada.receberNumero('Selecione o número do cliente titular para ver seus dependentes:');
+        const clienteTitularSelecionado = this.obterClienteTitularPorIndice(indiceTitularSelecionado);
+
+        if (clienteTitularSelecionado) {
+            console.log('Dependentes do cliente titular selecionado:');
+            clienteTitularSelecionado.Dependentes.forEach(dependente => {
+                this.impressor = new ImpressaorCliente(dependente);
+                console.log(this.impressor.imprimir());
+            });
+        } else {
+            console.log('Cliente titular selecionado inválido.');
+        }
     }
 
-    private ehTitular(cliente: Cliente): boolean {
-        return cliente.Titular === undefined
+    private obterClienteTitularPorIndice(indice: number): Cliente | undefined {
+        let clientesTitulares: Cliente[] = this.clientes.filter(cliente => cliente.Titular === undefined);
+        return clientesTitulares[indice - 1];
     }
 }

@@ -17,13 +17,14 @@ export default class Principal extends Processo {
                 this.processo = new TipoCadastroCliente()
                 this.processo.processar()
                 break
+
             case 3:
                 this.processo = new TipoListagemClientes()
                 this.processo.processar()
                 break
+
             case 0:
                 this.execucao = false
-                console.log('Até logo!')
                 console.clear()
                 break
             default:
