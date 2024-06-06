@@ -12,19 +12,22 @@ export default class ImpressaorCliente implements Impressor {
 
     }
     imprimir(): string {
-        let impressao = `****************************\n`
+        let impressao = `----------------------------\n`
+            + ` \n`
             + `| Nome: ${this.cliente.Nome}\n`
             + `| Nome social: ${this.cliente.NomeSocial}\n`
             + `| Data de nascimento: ${this.cliente.DataNascimento.toLocaleDateString()}\n`
             + `| Data de cadastro: ${this.cliente.DataCadastro.toLocaleDateString()}`
+            + ` \n`
 
         this.impressor = new ImpressorEndereco(this.cliente.Endereco)
         impressao = impressao + `\n${this.impressor.imprimir()}`
 
+
         this.impressor = new ImpressorDocumentos(this.cliente.Documentos)
         impressao = impressao + `\n${this.impressor.imprimir()}`
 
-        impressao = impressao + `\n****************************`
+        impressao = impressao + `\n----------------------------`
         return impressao
     }
 
