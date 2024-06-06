@@ -29,10 +29,14 @@ export default class ListagemDependentes extends Processo {
 
         if (clienteTitularSelecionado) {
             console.log('Dependentes do cliente titular selecionado:');
-            clienteTitularSelecionado.Dependentes.forEach(dependente => {
-                this.impressor = new ImpressaorCliente(dependente);
-                console.log(this.impressor.imprimir());
-            });
+            if (clienteTitularSelecionado.Dependentes.length > 0) {
+                clienteTitularSelecionado.Dependentes.forEach(dependente => {
+                    this.impressor = new ImpressaorCliente(dependente);
+                    console.log(this.impressor.imprimir());
+                });
+            } else {
+                console.log('Este cliente titular não possui dependentes.');
+            }
         } else {
             console.log('Cliente titular selecionado inválido.');
         }
