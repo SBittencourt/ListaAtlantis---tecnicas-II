@@ -3,8 +3,6 @@
 
 <hr> 
 
-<hr> 
-
 ## Sumário
 
 - [Sobre o projeto](#Sobre-o-projeto)
