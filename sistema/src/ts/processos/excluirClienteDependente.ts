@@ -7,32 +7,46 @@ export default class ExcluirClienteDependente extends Processo {
         console.clear();
         console.log('Iniciando a exclusão de um cliente dependente...');
 
-        const clientesDependentes = Armazem.InstanciaUnica.Clientes.filter(cliente => cliente.Titular !== undefined);
+        const clientesTitulares = Armazem.InstanciaUnica.Clientes.filter(cliente => cliente.Titular === undefined);
 
-        if (clientesDependentes.length === 0) {
-            console.log('Não há clientes dependentes para excluir.');
+        if (clientesTitulares.length === 0) {
+            console.log('Não há clientes titulares cadastrados.');
             return;
         }
 
-        console.log('Clientes Dependentes:');
-        clientesDependentes.forEach((cliente, index) => {
-            console.log(`${index + 1}. ${cliente.Nome}`);
+        console.log('Clientes Titulares:');
+        clientesTitulares.forEach((clienteTitular, index) => {
+            console.log(`${index + 1}. ${clienteTitular.Nome}`);
+            if (clienteTitular.Dependentes.length > 0) {
+                console.log('   Dependentes:');
+                clienteTitular.Dependentes.forEach((dependente, idx) => {
+                    console.log(`      ${index + 1}.${idx + 1}. ${dependente.Nome}`);
+                });
+            } else {
+                console.log('   - Este titular não possui dependentes.');
+            }
         });
 
-        const indiceClienteSelecionado = this.entrada.receberNumero('Selecione o número do cliente dependente a ser excluído:');
-        const clienteSelecionado = this.obterClienteDependentePorIndice(indiceClienteSelecionado);
+        const indiceTitularSelecionado = this.entrada.receberNumero('Selecione o número do cliente titular para exibir os dependentes e escolher qual excluir:');
+        const clienteTitularSelecionado = this.obterClienteTitularPorIndice(indiceTitularSelecionado);
 
-        if (clienteSelecionado) {
-            const titular = clienteSelecionado.Titular;
-            titular?.Dependentes.splice(titular.Dependentes.indexOf(clienteSelecionado), 1);
-            console.log('Cliente dependente excluído com sucesso.');
+        if (clienteTitularSelecionado) {
+            const indiceDependenteSelecionado = this.entrada.receberNumero('Selecione o número do dependente a ser excluído:');
+            const dependenteSelecionado = clienteTitularSelecionado.Dependentes[indiceDependenteSelecionado - 1];
+            
+            if (dependenteSelecionado) {
+                clienteTitularSelecionado.Dependentes.splice(indiceDependenteSelecionado - 1, 1);
+                console.log('Cliente dependente excluído com sucesso.');
+            } else {
+                console.log('Dependente selecionado inválido.');
+            }
         } else {
-            console.log('Cliente dependente selecionado inválido.');
+            console.log('Cliente titular selecionado inválido.');
         }
     }
 
-    private obterClienteDependentePorIndice(indice: number): Cliente | undefined {
-        const clientesDependentes = Armazem.InstanciaUnica.Clientes.filter(cliente => cliente.Titular !== undefined);
-        return clientesDependentes[indice - 1];
+    private obterClienteTitularPorIndice(indice: number): Cliente | undefined {
+        const clientesTitulares = Armazem.InstanciaUnica.Clientes.filter(cliente => cliente.Titular === undefined);
+        return clientesTitulares[indice - 1];
     }
 }
