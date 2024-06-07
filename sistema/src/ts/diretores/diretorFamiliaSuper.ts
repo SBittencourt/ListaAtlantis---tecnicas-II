@@ -1,5 +1,5 @@
 import ConstrutorAcomodacao from "../construtores/construtorAcomodacao";
-import { NomeAcomadacao } from "../enumeracoes/NomeAcomadacao";
+import { NomeAcomodacao } from "../enumeracoes/NomeAcomadacao";
 import Acomodacao from "../modelos/acomodacao";
 import Diretor from "../abstracoes/diretor";
 
@@ -12,7 +12,7 @@ export default class DiretorFamiliaSuper extends Diretor<Acomodacao> {
 
     public construir(): Acomodacao {
         let objetoConstrutor = this.construtor as ConstrutorAcomodacao
-        objetoConstrutor.NomeAcomodacao = NomeAcomadacao.FamiliaSuper
+        objetoConstrutor.NomeAcomodacao = NomeAcomodacao.FamiliaSuper
         objetoConstrutor.CamaCasal = 2
         objetoConstrutor.CamaSolteiro = 6
         objetoConstrutor.Climatizacao = true

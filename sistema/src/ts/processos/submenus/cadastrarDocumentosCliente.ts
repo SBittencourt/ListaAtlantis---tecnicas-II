@@ -15,7 +15,7 @@ export default class CadastrarDocumentosCliente extends Processo {
     }
 
     processar(): void {
-        console.log('Inciando o cadastro de documentos...')
+        console.log('Iniciando o cadastro de documentos...')
         while (this.execucao) {
             this.menu.mostrar()
             this.opcao = this.entrada.receberNumero('Qual opção desejada?')

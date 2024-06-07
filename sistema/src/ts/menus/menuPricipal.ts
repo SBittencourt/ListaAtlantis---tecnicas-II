@@ -29,7 +29,7 @@ export default class MenuPrincipal implements Menu {
         console.log(`----------------------`)
         console.log(` `)
         console.log(`| 9 - Registrar hospedagem`)
-        console.log(`| 10 - Registrar saída`)
+        console.log(`| 10 - Registrar hospedagem`)
         console.log(` `)          
         console.log(`----------------------`)
         console.log(`| 0 - Sair`)

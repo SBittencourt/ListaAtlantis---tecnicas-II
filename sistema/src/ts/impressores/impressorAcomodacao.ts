@@ -15,7 +15,7 @@ export default class ImpressorAcomodacao implements Impressor {
             + `-- Quantidade de garagens disponíveis: ${this.acomodacao.Garagem}\n`
             + `-- Quantidade de suites: ${this.acomodacao.Suite}\n`
             + ` \n`
-        return descricao
+            return descricao
     }
 
     private converterBooleano(valor: Boolean) {

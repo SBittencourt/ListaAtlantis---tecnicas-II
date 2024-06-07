@@ -8,9 +8,6 @@ console.log(`Bem-vindo(a) ao melhor sistema de gestão de clubes, hotéis e reso
 let processo: Processo
 let execucao: Boolean = true
 
-processo = new CadastroAcomodacoes()
-processo.processar()
-
 while (execucao) {
     processo = new Principal()
     processo.processar()

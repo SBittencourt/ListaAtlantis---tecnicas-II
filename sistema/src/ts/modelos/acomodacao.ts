@@ -1,14 +1,14 @@
-import { NomeAcomadacao } from "../enumeracoes/NomeAcomadacao"
+import { NomeAcomodacao } from "../enumeracoes/NomeAcomadacao"
 
 export default class Acomodacao {
-    private nomeAcomadacao: NomeAcomadacao
+    private nomeAcomadacao: NomeAcomodacao
     private camaSolteiro: Number
     private camaCasal: Number
     private suite: Number
     private climatizacao: Boolean
     private garagem: Number
 
-    constructor(nomeAcomadacao: NomeAcomadacao, camaSolteiro: Number, camaCasal: Number,
+    constructor(nomeAcomadacao: NomeAcomodacao, camaSolteiro: Number, camaCasal: Number,
         suite: Number, climatizacao: Boolean, garagem: Number) {
         this.nomeAcomadacao = nomeAcomadacao
         this.camaSolteiro = camaSolteiro
