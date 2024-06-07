@@ -33,10 +33,11 @@ export default class ListagemDependentes extends Processo {
         const clienteTitularSelecionado = this.obterClienteTitularPorIndice(indiceTitularSelecionado);
 
         if (clienteTitularSelecionado) {
-            console.log('Dependentes do cliente titular selecionado:');
+            console.log(`Dependentes do cliente titular ${clienteTitularSelecionado.Nome}:`);
             if (clienteTitularSelecionado.Dependentes.length > 0) {
                 clienteTitularSelecionado.Dependentes.forEach(dependente => {
                     this.impressor = new ImpressaorCliente(dependente);
+                    console.log(`- ${dependente.Nome}, Titular: ${clienteTitularSelecionado.Nome}`);
                     console.log(this.impressor.imprimir());
                 });
             } else {

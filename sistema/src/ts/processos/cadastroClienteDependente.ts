@@ -33,6 +33,10 @@ export default class CadastroClienteDependente extends Processo {
 
             dependente.Endereco = clienteSelecionado.Endereco;
 
+            clienteSelecionado.Telefones.forEach(telefone => {
+                dependente.adicionarTelefone(telefone);
+            });
+
             this.processo = new CadastrarDocumentosCliente(dependente);
             this.processo.processar();
 

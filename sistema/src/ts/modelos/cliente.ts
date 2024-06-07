@@ -41,4 +41,15 @@ export default class Cliente {
     public removerDependente(dependente: Cliente) {
         this.dependentes = this.dependentes.filter(dep => dep !== dependente);
     }
+
+    public adicionarTelefone(telefone: Telefone) {
+        if (!this.telefones.some(tel => tel.Ddd === telefone.Ddd && tel.Numero === telefone.Numero)) {
+            this.telefones.push(telefone);
+        }
+    }
+
+    public removerTelefone(telefone: Telefone) {
+        this.telefones = this.telefones.filter(tel => tel.Ddd !== telefone.Ddd || tel.Numero !== telefone.Numero);
+    }
 }
+
