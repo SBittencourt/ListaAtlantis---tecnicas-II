@@ -20,24 +20,27 @@ export default class ListagemTitulares extends Processo {
         if (this.clientes.length === 0) {
             console.log('Não há titulares cadastrados.');
         } else {
+            let numeroCliente = 1;
             let titularesEncontrados = false;
 
             this.clientes.forEach(cliente => {
                 if (this.ehTitular(cliente)) {
                     titularesEncontrados = true;
-                    console.log('Cliente Titular:');
+                    console.log(`Cliente Titular ${numeroCliente}:`);
                     this.impressor = new ImpressaorCliente(cliente);
                     console.log(this.impressor.imprimir());
 
                     if (cliente.Dependentes.length > 0) {
-                        console.log('Dependentes:');
                         cliente.Dependentes.forEach(dependente => {
+                            console.log(`Dependente ${numeroCliente}.${cliente.Dependentes.indexOf(dependente) + 1}:`);
                             this.impressor = new ImpressaorCliente(dependente);
                             console.log(this.impressor.imprimir());
                         });
                     } else {
                         console.log('   - Este titular não possui dependentes.');
                     }
+
+                    numeroCliente++;
                 }
             });
 
