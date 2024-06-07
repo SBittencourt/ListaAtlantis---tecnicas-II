@@ -1,5 +1,5 @@
 <h1 align="center">Listas técnica de programação II - Atlantis 💧</h1>
-<H5 align="center"> Status da Atv II: em andamento</H5>
+<H5 align="center"> Status da Atv II: concluída</H5>
 
 <hr> 
 
