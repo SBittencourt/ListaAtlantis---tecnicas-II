@@ -17,11 +17,16 @@ export default class ListagemDependentes extends Processo {
         console.clear();
         console.log('Iniciando a listagem dos clientes titulares e seus dependentes...');
 
+        const clientesTitulares = this.clientes.filter(cliente => cliente.Titular === undefined);
+
+        if (clientesTitulares.length === 0) {
+            console.log('Não há clientes titulares para listar seus dependentes.');
+            return;
+        }
+
         console.log('Clientes Titulares:');
-        this.clientes.forEach((cliente, index) => {
-            if (cliente.Titular === undefined) {
-                console.log(`${index + 1}. ${cliente.Nome}`);
-            }
+        clientesTitulares.forEach((cliente, index) => {
+            console.log(`${index + 1}. ${cliente.Nome}`);
         });
 
         const indiceTitularSelecionado = this.entrada.receberNumero('Selecione o número do cliente titular para ver seus dependentes:');
@@ -43,7 +48,7 @@ export default class ListagemDependentes extends Processo {
     }
 
     private obterClienteTitularPorIndice(indice: number): Cliente | undefined {
-        let clientesTitulares: Cliente[] = this.clientes.filter(cliente => cliente.Titular === undefined);
+        const clientesTitulares = this.clientes.filter(cliente => cliente.Titular === undefined);
         return clientesTitulares[indice - 1];
     }
 }

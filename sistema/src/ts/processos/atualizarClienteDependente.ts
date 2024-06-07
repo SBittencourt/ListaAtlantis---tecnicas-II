@@ -9,11 +9,16 @@ export default class AtualizarClienteDependente extends Processo {
         console.clear();
         console.log('Iniciando a atualização de um cliente dependente...');
 
+        const clientesDependentes = Armazem.InstanciaUnica.Clientes.filter(cliente => cliente.Titular !== undefined);
+
+        if (clientesDependentes.length === 0) {
+            console.log('Não há clientes dependentes para atualizar.');
+            return;
+        }
+
         console.log('Clientes Dependentes:');
-        Armazem.InstanciaUnica.Clientes.forEach((cliente, index) => {
-            if (cliente.Titular !== undefined) {
-                console.log(`${index + 1}. ${cliente.Nome}`);
-            }
+        clientesDependentes.forEach((cliente, index) => {
+            console.log(`${index + 1}. ${cliente.Nome}`);
         });
 
         const indiceClienteSelecionado = this.entrada.receberNumero('Selecione o número do cliente dependente a ser atualizado:');
@@ -51,7 +56,7 @@ export default class AtualizarClienteDependente extends Processo {
     }
 
     private obterClienteDependentePorIndice(indice: number): Cliente | undefined {
-        let clientesDependentes: Cliente[] = Armazem.InstanciaUnica.Clientes.filter(cliente => cliente.Titular !== undefined);
+        const clientesDependentes = Armazem.InstanciaUnica.Clientes.filter(cliente => cliente.Titular !== undefined);
         return clientesDependentes[indice - 1];
     }
 }

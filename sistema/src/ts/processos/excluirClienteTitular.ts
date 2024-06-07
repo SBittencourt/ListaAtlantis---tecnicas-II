@@ -7,11 +7,16 @@ export default class ExcluirClienteTitular extends Processo {
         console.clear();
         console.log('Iniciando a exclusão de um cliente titular...');
 
+        const clientesTitulares = Armazem.InstanciaUnica.Clientes.filter(cliente => cliente.Titular === undefined);
+
+        if (clientesTitulares.length === 0) {
+            console.log('Não há clientes titulares para excluir.');
+            return;
+        }
+
         console.log('Clientes Titulares:');
-        Armazem.InstanciaUnica.Clientes.forEach((cliente, index) => {
-            if (cliente.Titular === undefined) {
-                console.log(`${index + 1}. ${cliente.Nome}`);
-            }
+        clientesTitulares.forEach((cliente, index) => {
+            console.log(`${index + 1}. ${cliente.Nome}`);
         });
 
         const indiceClienteSelecionado = this.entrada.receberNumero('Selecione o número do cliente titular a ser excluído:');
@@ -26,7 +31,7 @@ export default class ExcluirClienteTitular extends Processo {
     }
 
     private obterClienteTitularPorIndice(indice: number): Cliente | undefined {
-        let clientesTitulares: Cliente[] = Armazem.InstanciaUnica.Clientes.filter(cliente => cliente.Titular === undefined);
+        const clientesTitulares = Armazem.InstanciaUnica.Clientes.filter(cliente => cliente.Titular === undefined);
         return clientesTitulares[indice - 1];
     }
 }
