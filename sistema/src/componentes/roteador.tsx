@@ -12,6 +12,7 @@ import Home from "./Home";
 import Login from "./login";
 import FormularioAtualizarAcomodacao from "./formularioCadastroAcomodação";
 import TelaHospedagem from "./hospedagem";
+import CheckIn from "./checkin";
 
 const Roteador: React.FC = () => {
   const location = useLocation();
@@ -41,8 +42,7 @@ const Roteador: React.FC = () => {
         <Route path="/cadastro-acomodacao" element={<FormularioAtualizarAcomodacao />} />
 
         <Route path="/hospedagem" element={<TelaHospedagem />} />
-        <Route path="/check-in" element={<FormularioCadastroCliente />} />
-        <Route path="/check-out" element={<FormularioCadastroCliente />} />
+        <Route path="/check-in" element={<CheckIn />} />
 
       </Routes>
     </>
