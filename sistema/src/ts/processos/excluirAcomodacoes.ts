@@ -24,7 +24,7 @@ export default class ExcluirAcomodacao extends Processo {
         console.log('Acomodações disponíveis para exclusão:');
         console.log('--------------------------------------');
         this.acomodacoes.forEach((acomodacao, index) => {
-            console.log(`${index + 1}. ID: ${index}, Tipo: ${acomodacao.NomeAcomadacao}`);
+            console.log(`${index + 1}.  Tipo: ${acomodacao.NomeAcomadacao}`);
         });
         console.log('--------------------------------------');
 
@@ -36,7 +36,7 @@ export default class ExcluirAcomodacao extends Processo {
             return;
         }
 
-        const acomodacaoExcluir = this.acomodacoes[numeroAcomodacao];
+        const acomodacaoExcluir = this.acomodacoes[numeroAcomodacao - 1];
         this.acomodacoes.splice(numeroAcomodacao - 1, 1);
 
         console.log(`Acomodação ${acomodacaoExcluir.NomeAcomadacao} excluída com sucesso.`);
