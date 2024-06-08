@@ -1,6 +1,5 @@
 import Processo from "../abstracoes/processo";
 import Armazem from "../dominio/armazem";
-import ImpressorAcomodacao from "../impressores/impressorAcomodacao";
 import Acomodacao from "../modelos/acomodacao";
 import { NomeAcomodacao, DescricoesAcomodacao } from "../enumeracoes/NomeAcomadacao";
 
@@ -17,34 +16,51 @@ export default class ListagemAcomodacoes extends Processo {
         console.log('Iniciando a listagem das acomodações ofertadas...');
         console.log(`-------------------------------------------------`);
 
-        const quantidadePorTipo = new Map<NomeAcomodacao, number>();
+        const ocupadasPorTipo = new Map<NomeAcomodacao, number>();
+        const disponiveisPorTipo = new Map<NomeAcomodacao, number>();
 
         this.acomodacoes.forEach(acomodacao => {
-            const tipo = acomodacao.NomeAcomadacao; 
-            if (quantidadePorTipo.has(tipo)) {
-                quantidadePorTipo.set(tipo, quantidadePorTipo.get(tipo)! + 1);
+            const tipo = acomodacao.NomeAcomadacao;
+            if (acomodacao.estaOcupada()) {
+                if (ocupadasPorTipo.has(tipo)) {
+                    ocupadasPorTipo.set(tipo, ocupadasPorTipo.get(tipo)! + 1);
+                } else {
+                    ocupadasPorTipo.set(tipo, 1);
+                }
             } else {
-                quantidadePorTipo.set(tipo, 1);
+                if (disponiveisPorTipo.has(tipo)) {
+                    disponiveisPorTipo.set(tipo, disponiveisPorTipo.get(tipo)! + 1);
+                } else {
+                    disponiveisPorTipo.set(tipo, 1);
+                }
             }
         });
 
-        quantidadePorTipo.forEach((quantidade, tipo) => {
-            const nomeComEspacos = tipo.replace(/([A-Z])/g, ' $1').trim();
-            console.log(`${nomeComEspacos}: ${quantidade} disponíveis`);
-            console.log("Descrição:");
-            console.log(`${DescricoesAcomodacao[tipo]}`);
-            console.log("-----------------------------------------------");
+        console.log(`Detalhes de cada tipo de acomodação:`);
+        console.log(`-------------------------------------------------`);
 
-            const acomodacao = this.acomodacoes.find(acomodacao => acomodacao.NomeAcomadacao === tipo);
+        disponiveisPorTipo.forEach((quantidade, tipo) => {
+            console.log(`${tipo}`);
+            console.log(` `);
+            console.log(`Disponíveis: ${quantidade}`);
+            console.log(`Ocupadas: ${ocupadasPorTipo.get(tipo) || 0}`);
+            console.log(`Descrição: ${DescricoesAcomodacao[tipo]}`);
+            console.log(` `);
+            console.log(`Especificações:`);
+            const acomodacao = this.acomodacoes.find(a => a.NomeAcomadacao === tipo);
             if (acomodacao) {
-                const impressor = new ImpressorAcomodacao(acomodacao);
-                console.log(impressor.imprimir());
+                console.log(`Cama Solteiro: ${acomodacao.CamaSolteiro}`);
+                console.log(`Cama Casal: ${acomodacao.CamaCasal}`);
+                console.log(`Suíte: ${acomodacao.Suite}`);
+                console.log(`Climatização: ${acomodacao.Climatizacao ? 'Sim' : 'Não'}`);
+                console.log(`Garagem: ${acomodacao.Garagem}`);
             }
-
             console.log("-----------------------------------------------");
         });
 
-        if (quantidadePorTipo.size === 0) {
+        console.log(`-------------------------------------------------`);
+
+        if (this.acomodacoes.length === 0) {
             console.log('Não há acomodações disponíveis no momento.');
         }
     }

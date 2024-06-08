@@ -4,18 +4,18 @@ import Acomodacao from "../modelos/acomodacao";
 
 export default class ConstrutorAcomodacao implements Construtor<Acomodacao>{
     private nomeAcomodacao: NomeAcomodacao = NomeAcomodacao.SolteiroSimples
-    private camaSolteiro: Number = 0
-    private camaCasal: Number = 0
-    private suite: Number = 0
-    private climatizacao: Boolean = false
-    private garagem: Number = 0
+    private camaSolteiro: number = 0 
+    private camaCasal: number = 0 
+    private suite: number = 0 
+    private climatizacao: boolean = false
+    private garagem: number = 0 
 
     public set NomeAcomodacao(nomeAcomodacao: NomeAcomodacao) { this.nomeAcomodacao = nomeAcomodacao }
-    public set CamaSolteiro(camaSolteiro: Number) { this.camaSolteiro = camaSolteiro }
-    public set CamaCasal(camaCasal: Number) { this.camaCasal = camaCasal }
-    public set Suite(suite: Number) { this.suite = suite }
-    public set Climatizacao(climatizacao: Boolean) { this.climatizacao = climatizacao }
-    public set Garagem(garagem: Number) { this.garagem = garagem }
+    public set CamaSolteiro(camaSolteiro: number) { this.camaSolteiro = camaSolteiro }
+    public set CamaCasal(camaCasal: number) { this.camaCasal = camaCasal }
+    public set Suite(suite: number) { this.suite = suite }
+    public set Climatizacao(climatizacao: boolean) { this.climatizacao = climatizacao }
+    public set Garagem(garagem: number) { this.garagem = garagem }
 
     construir(): Acomodacao {
         let acomodacao = new Acomodacao(this.nomeAcomodacao, this.camaSolteiro,
