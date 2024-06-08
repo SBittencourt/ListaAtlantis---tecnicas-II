@@ -23,9 +23,16 @@ export default class ExcluirAcomodacao extends Processo {
 
         console.log('Acomodações disponíveis para exclusão:');
         console.log('--------------------------------------');
+
+        const contadorPorTipo = new Map<string, number>();
         this.acomodacoes.forEach((acomodacao, index) => {
-            console.log(`${index + 1}.  Tipo: ${acomodacao.NomeAcomadacao}`);
+            const tipo = acomodacao.NomeAcomadacao;
+            let indice = contadorPorTipo.get(tipo) || 0;
+            indice++;
+            contadorPorTipo.set(tipo, indice);
+            console.log(`${index + 1}. Tipo: ${tipo} ${indice.toString().padStart(2, '0')}`);
         });
+
         console.log('--------------------------------------');
 
         const entrada = new Entrada();

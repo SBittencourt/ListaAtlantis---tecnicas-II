@@ -30,45 +30,51 @@ export default class CadastroAcomodacoes extends Processo {
     }
 
     processar(): void {
-        this.mostrarMenu();
-        this.opcao = this.entrada.receberNumero('Escolha o tipo de acomodação: ');
+        while (this.execucao) {
+            this.mostrarMenu();
+            this.opcao = this.entrada.receberNumero('Escolha o tipo de acomodação: ');
 
-        let diretor;
-        let tipoAcomodacao: NomeAcomodacao | null = null;
+            let diretor;
+            let tipoAcomodacao: NomeAcomodacao | null = null;
 
-        switch (this.opcao) {
-            case 1:
-                diretor = new DiretorSolteiroSimples();
-                tipoAcomodacao = NomeAcomodacao.SolteiroSimples;
-                break;
-            case 2:
-                diretor = new DiretorCasalSimples();
-                tipoAcomodacao = NomeAcomodacao.CasalSimples;
-                break;
-            case 3:
-                diretor = new DiretorFamiliaSimples();
-                tipoAcomodacao = NomeAcomodacao.FamiliaSimples;
-                break;
-            case 4:
-                diretor = new DiretorFamiliaMais();
-                tipoAcomodacao = NomeAcomodacao.FamiliaMais;
-                break;
-            case 5:
-                diretor = new DiretorSolteiroMais();
-                tipoAcomodacao = NomeAcomodacao.SolteiroMais;
-                break;
-            case 6:
-                diretor = new DiretorFamiliaSuper();
-                tipoAcomodacao = NomeAcomodacao.FamiliaSuper;
-                break;
-            default:
-                console.log("Opção inválida");
+            switch (this.opcao) {
+                case 1:
+                    diretor = new DiretorSolteiroSimples();
+                    tipoAcomodacao = NomeAcomodacao.SolteiroSimples;
+                    break;
+                case 2:
+                    diretor = new DiretorCasalSimples();
+                    tipoAcomodacao = NomeAcomodacao.CasalSimples;
+                    break;
+                case 3:
+                    diretor = new DiretorFamiliaSimples();
+                    tipoAcomodacao = NomeAcomodacao.FamiliaSimples;
+                    break;
+                case 4:
+                    diretor = new DiretorFamiliaMais();
+                    tipoAcomodacao = NomeAcomodacao.FamiliaMais;
+                    break;
+                case 5:
+                    diretor = new DiretorSolteiroMais();
+                    tipoAcomodacao = NomeAcomodacao.SolteiroMais;
+                    break;
+                case 6:
+                    diretor = new DiretorFamiliaSuper();
+                    tipoAcomodacao = NomeAcomodacao.FamiliaSuper;
+                    break;
+                default:
+                    console.log("Opção inválida");
+                    this.execucao = false;
+                    return;
+            }
+
+            this.acomodacoes.push(diretor.construir());
+            console.log(`Acomodação ${tipoAcomodacao} cadastrada com sucesso!`);
+
+            const desejaCadastrarMais = this.entrada.receberTexto('Deseja cadastrar mais uma acomodação? (S/N): ').toUpperCase();
+            if (desejaCadastrarMais !== 'S') {
                 this.execucao = false;
-                return;
+            }
         }
-
-        this.acomodacoes.push(diretor.construir());
-        console.log(`Acomodação ${tipoAcomodacao} cadastrada com sucesso!`);
-        this.execucao = false;
     }
 }
