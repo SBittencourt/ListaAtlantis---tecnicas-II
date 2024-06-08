@@ -20,7 +20,7 @@ const Roteador: React.FC = () => {
       {location.pathname !== "/" && (
         <BarraNavegacao 
           tema="#e3f2fd" 
-          botoes={['Home', 'Clientes', 'Acomodacao', 'Hospedagem']} 
+          botoes={['Home', 'Clientes', 'Acomodacoes', 'Hospedagem']} 
           seletorView={(novaTela: string, evento: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {}} 
         />
       )}
@@ -33,8 +33,8 @@ const Roteador: React.FC = () => {
                   throw new Error("Function not implemented.");
               } } />} />
         <Route path="/Acomodacoes" element={<ListaAcomodacoes tema={""} seletorView={function (novaTela: string, evento: Event): void {
-                  throw new Error("Function not implemented.");
-              } } />} />
+          throw new Error("Function not implemented.");
+        } }/>} />
 
         <Route path="/cadastro" element={<FormularioCadastroCliente />} />
         <Route path="/cadastro-acomodacao" element={<FormularioCadastroAcomodacao />} />
