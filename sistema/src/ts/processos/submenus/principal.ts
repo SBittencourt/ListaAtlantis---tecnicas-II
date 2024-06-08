@@ -1,6 +1,7 @@
 import Processo from "../../abstracoes/processo";
 import MenuPrincipal from "../../menus/menuPricipal";
 import CadastroAcomodacoes from "../cadastroAcomodacoes";
+import ExcluirAcomodacao from "../excluirAcomodacoes";
 import ListagemAcomodacoes from "../listagemAcomodacoes";
 import TipoExcluirCliente from "./TipoExcluirCliente";
 import TipoAtualizarCliente from "./tipoAtualizarCliente";
@@ -37,6 +38,7 @@ export default class Principal extends Processo {
                     this.processo.processar();
                     break;
 
+
                 case 5:
                     this.processo = new CadastroAcomodacoes();
                     this.processo.processar();
@@ -45,6 +47,11 @@ export default class Principal extends Processo {
                     this.processo = new ListagemAcomodacoes();
                     this.processo.processar();
                     break
+                case 7:
+                    this.processo = new ExcluirAcomodacao();
+                    this.processo.processar();
+                    break
+                    
 
                 case 0:
                     this.execucao = false;

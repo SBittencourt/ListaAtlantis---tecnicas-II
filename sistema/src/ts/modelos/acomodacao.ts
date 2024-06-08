@@ -7,6 +7,8 @@ export default class Acomodacao {
     private suite: Number
     private climatizacao: Boolean
     private garagem: Number
+    nome: any
+    id: any
 
     constructor(nomeAcomadacao: NomeAcomodacao, camaSolteiro: Number, camaCasal: Number,
         suite: Number, climatizacao: Boolean, garagem: Number) {
