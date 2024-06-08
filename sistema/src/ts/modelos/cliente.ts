@@ -1,3 +1,4 @@
+import Armazem from "../dominio/armazem";
 import Documento from "./documento";
 import Endereco from "./endereco";
 import Telefone from "./telefone";
@@ -50,5 +51,9 @@ export default class Cliente {
 
     public removerTelefone(telefone: Telefone) {
         this.telefones = this.telefones.filter(tel => tel.Ddd !== telefone.Ddd || tel.Numero !== telefone.Numero);
+    }
+
+    estaHospedado(): boolean {
+        return Armazem.InstanciaUnica.Hospedagens.some(hospedagem => hospedagem.Titular === this && hospedagem.DataCheckOut === null);
     }
 }

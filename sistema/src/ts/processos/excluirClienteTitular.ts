@@ -6,25 +6,30 @@ export default class ExcluirClienteTitular extends Processo {
     processar(): void {
         console.clear();
         console.log('Iniciando a exclusão de um cliente titular...');
-
-        const clientesTitulares = Armazem.InstanciaUnica.Clientes.filter(cliente => cliente.Titular === undefined);
-
+    
+        // Filtrar apenas os clientes titulares que não estão atualmente hospedados
+        const clientesTitulares = Armazem.InstanciaUnica.Clientes.filter(cliente => cliente.Titular === undefined && !cliente.estaHospedado());
+    
         if (clientesTitulares.length === 0) {
-            console.log('Não há clientes titulares para excluir.');
+            console.log('Não há clientes titulares disponíveis para excluir.');
             return;
         }
-
+    
         console.log('Clientes Titulares:');
         clientesTitulares.forEach((cliente, index) => {
             console.log(`${index + 1}. ${cliente.Nome}`);
         });
-
+    
         const indiceClienteSelecionado = this.entrada.receberNumero('Selecione o número do cliente titular a ser excluído:');
         const clienteSelecionado = this.obterClienteTitularPorIndice(indiceClienteSelecionado);
-
+    
         if (clienteSelecionado) {
-            Armazem.InstanciaUnica.excluirClienteTitular(clienteSelecionado);
-            console.log('Cliente titular excluído com sucesso.');
+            if (clienteSelecionado.estaHospedado()) {
+                console.log('Este cliente titular está atualmente hospedado e não pode ser excluído.');
+            } else {
+                Armazem.InstanciaUnica.excluirClienteTitular(clienteSelecionado);
+                console.log('Cliente titular excluído com sucesso.');
+            }
         } else {
             console.log('Cliente titular selecionado inválido.');
         }

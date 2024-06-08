@@ -126,10 +126,9 @@ export default class ControleHospedagem extends Processo {
             return;
         }
     
-        hospedagemEscolhida.DataCheckOut = new Date(); // Assume check-out na data atual
+        hospedagemEscolhida.DataCheckOut = new Date();
         console.log(`Check-out realizado com sucesso para o hóspede ${hospedagemEscolhida.Titular.Nome}.`);
     
-        // Desassociar a hospedagem da acomodação correspondente
         const acomodacao = hospedagemEscolhida.Acomodacao;
         if (acomodacao) {
             acomodacao.desassociarHospedagem();
