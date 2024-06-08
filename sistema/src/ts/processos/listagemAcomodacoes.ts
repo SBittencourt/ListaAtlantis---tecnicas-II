@@ -39,6 +39,7 @@ export default class ListagemAcomodacoes extends Processo {
         console.log(`Detalhes de cada tipo de acomodação:`);
         console.log(`-------------------------------------------------`);
 
+        // Mostra as acomodações disponíveis
         disponiveisPorTipo.forEach((quantidade, tipo) => {
             console.log(`${tipo}`);
             console.log(` `);
@@ -58,10 +59,32 @@ export default class ListagemAcomodacoes extends Processo {
             console.log("-----------------------------------------------");
         });
 
-        console.log(`-------------------------------------------------`);
+        // Mostra as acomodações ocupadas
+        ocupadasPorTipo.forEach((quantidade, tipo) => {
+            if (!disponiveisPorTipo.has(tipo)) {
+                console.log(`${tipo}`);
+                console.log(` `);
+                console.log(`Disponíveis: 0`);
+                console.log(`Ocupadas: ${quantidade}`);
+                console.log(`Descrição: ${DescricoesAcomodacao[tipo]}`);
+                console.log(` `);
+                console.log(`Especificações:`);
+                const acomodacao = this.acomodacoes.find(a => a.NomeAcomadacao === tipo);
+                if (acomodacao) {
+                    console.log(`Cama Solteiro: ${acomodacao.CamaSolteiro}`);
+                    console.log(`Cama Casal: ${acomodacao.CamaCasal}`);
+                    console.log(`Suíte: ${acomodacao.Suite}`);
+                    console.log(`Climatização: ${acomodacao.Climatizacao ? 'Sim' : 'Não'}`);
+                    console.log(`Garagem: ${acomodacao.Garagem}`);
+                }
+                console.log("-----------------------------------------------");
+            }
+        });
 
+        console.log(`-------------------------------------------------`);
         if (this.acomodacoes.length === 0) {
             console.log('Não há acomodações disponíveis no momento.');
         }
+        console.log(`-------------------------------------------------`);
     }
 }
