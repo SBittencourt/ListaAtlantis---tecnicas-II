@@ -1,5 +1,5 @@
 <h1 align="center">Listas técnica de programação II - Atlantis 💧</h1>
-<H5 align="center"> Status da Atv IV: em andamento </H5>
+<H5 align="center"> Status da Atv IV: concluída </H5>
 
 <hr> 
 
@@ -16,17 +16,13 @@ Projeto desenvolvido para a aula de técnicas de programação II da FATEC-SJC, 
 
 ## Como executar
 
-Entre na pasta sistema e execute os seguintes comandos no terminal(cmd):
+Entre na pasta e execute os seguintes comandos no terminal(cmd):
 
-### `cd src`
+### `cd sistema`
 
 ### `npm install`
 
-### `npm install typescript`
-
-### `npx tsc`
-
-### `node .\js\app\app.js`
+### `npm start`
 
 <hr>
 
