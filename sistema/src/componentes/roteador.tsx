@@ -3,7 +3,6 @@ import { BrowserRouter as Router, Route, Routes, useLocation } from "react-route
 import BarraNavegacao from "./barraNavegacao";
 
 import FormularioCadastroCliente from "./formularioCadastroCliente";
-import FormularioCadastroAcomodacao from "./formularioCadastroAcomodação";
 
 
 import ListaCliente from "./listaClientes"; 
@@ -11,6 +10,7 @@ import ListaAcomodacoes from "./listaAcomodações";
 
 import Home from "./Home";
 import Login from "./login";
+import FormularioAtualizarAcomodacao from "./formularioCadastroAcomodação";
 
 const Roteador: React.FC = () => {
   const location = useLocation();
@@ -37,7 +37,13 @@ const Roteador: React.FC = () => {
         } }/>} />
 
         <Route path="/cadastro" element={<FormularioCadastroCliente />} />
-        <Route path="/cadastro-acomodacao" element={<FormularioCadastroAcomodacao />} />
+        <Route path="/cadastro-titular" element={<FormularioCadastroCliente />} />
+        <Route path="/cadastro-dependente" element={<FormularioCadastroCliente />} />
+        <Route path="/cadastro-acomodacao" element={<FormularioAtualizarAcomodacao />} />
+
+        <Route path="/hospedagem" element={<FormularioCadastroCliente />} />
+        <Route path="/check-in" element={<FormularioCadastroCliente />} />
+        <Route path="/check-out" element={<FormularioCadastroCliente />} />
 
       </Routes>
     </>

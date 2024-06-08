@@ -47,7 +47,7 @@ const ListaAcomodacoes: React.FC<Props> = ({ tema, seletorView }) => {
         { 
             nome: NomeAcomodacao.SolteiroSimples, 
             descricao: DescricoesAcomodacao[NomeAcomodacao.SolteiroSimples], 
-            especificacoes: ["Cama solteiro: 1", "Cama casal: 0 (não possuí)", "Suíte: 1", "Climatizado: sim", "Garagem: 0 (não possuí)"],
+            especificacoes: ["Cama solteiro: 1", "Cama casal: 0(não possuí)", "Suíte: 1", "Climatizado: sim", "Garagem: 0(não possuí)"],
             disponiveis: 10,
             ocupadas: 5
         },
@@ -91,7 +91,7 @@ const ListaAcomodacoes: React.FC<Props> = ({ tema, seletorView }) => {
     return (
         <div className="container-fluid">
             <div className="d-flex justify-content-start mb-3">
-                <Link to="/cadastro-acomodacao" className="btn btn-primary">Cadastrar nova acomodação</Link>
+                <Link to="/cadastro-acomodacao" className="btn btn-primary">Atualizar acomodações</Link>
             </div>
             <div className="list-group">
                 {acomodacoes.map((acomodacao, acomodacaoIndex) => (
