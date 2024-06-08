@@ -106,29 +106,36 @@ export default class ControleHospedagem extends Processo {
             console.log('Não há hospedagens atuais.');
             return;
         }
-
+    
         console.log('Hospedagens atuais:');
         this.hospedagens.forEach((hospedagem, index) => {
             if (hospedagem.DataCheckOut === null) {
                 console.log(`${index + 1}. Hóspede: ${hospedagem.Titular.Nome}, Acomodação: ${hospedagem.Acomodacao.NomeAcomadacao}`);
             }
         });
-
+    
         const numeroHospedagem = this.entrada.receberNumero('Escolha a hospedagem para check-out: ');
         if (numeroHospedagem < 1 || numeroHospedagem > this.hospedagens.length) {
             console.log('Número de hospedagem inválido.');
             return;
         }
-
+    
         const hospedagemEscolhida = this.hospedagens[numeroHospedagem - 1];
         if (hospedagemEscolhida.DataCheckOut !== null) {
             console.log('Esta hospedagem já foi finalizada.');
             return;
         }
-
+    
         hospedagemEscolhida.DataCheckOut = new Date(); // Assume check-out na data atual
         console.log(`Check-out realizado com sucesso para o hóspede ${hospedagemEscolhida.Titular.Nome}.`);
+    
+        // Desassociar a hospedagem da acomodação correspondente
+        const acomodacao = hospedagemEscolhida.Acomodacao;
+        if (acomodacao) {
+            acomodacao.desassociarHospedagem();
+        }
     }
+    
 
     listarHospedagens(): void {
         console.log("Listando hospedagens atuais...");

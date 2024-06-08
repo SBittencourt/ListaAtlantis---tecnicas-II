@@ -39,7 +39,6 @@ export default class ListagemAcomodacoes extends Processo {
         console.log(`Detalhes de cada tipo de acomodação:`);
         console.log(`-------------------------------------------------`);
 
-        // Mostra as acomodações disponíveis
         disponiveisPorTipo.forEach((quantidade, tipo) => {
             console.log(`${tipo}`);
             console.log(` `);
@@ -59,7 +58,6 @@ export default class ListagemAcomodacoes extends Processo {
             console.log("-----------------------------------------------");
         });
 
-        // Mostra as acomodações ocupadas
         ocupadasPorTipo.forEach((quantidade, tipo) => {
             if (!disponiveisPorTipo.has(tipo)) {
                 console.log(`${tipo}`);
