@@ -57,84 +57,97 @@ export default class ControleHospedagem extends Processo {
             console.log('Não há acomodações disponíveis para check-in.');
             return;
         }
-    
+
         console.log('Acomodações disponíveis para check-in:');
         this.acomodacoes.forEach((acomodacao, index) => {
             if (!acomodacao.estaOcupada()) {
                 console.log(`${index + 1}.  Tipo: ${acomodacao.NomeAcomadacao}`);
             }
         });
-    
+
+        if (this.acomodacoes.filter(acomodacao => !acomodacao.estaOcupada()).length === 0) {
+            console.log('Todas as acomodações estão ocupadas no momento.');
+            return;
+        }
+
         const numeroAcomodacao = this.entrada.receberNumero('Escolha a acomodação: ');
         if (numeroAcomodacao < 1 || numeroAcomodacao > this.acomodacoes.length) {
             console.log('Número de acomodação inválido.');
             return;
         }
-    
+
         const acomodacaoEscolhida = this.acomodacoes[numeroAcomodacao - 1];
-    
+
         if (acomodacaoEscolhida.estaOcupada()) {
             console.log('Esta acomodação já está ocupada.');
             return;
         }
-    
-        console.log('Clientes disponíveis para check-in:');
-        this.clientes.forEach((cliente, index) => {
+
+        console.log('Clientes titulares disponíveis para check-in:');
+        const clientesTitularesDisponiveis = this.clientes.filter(cliente => cliente.isTitular());
+        if (clientesTitularesDisponiveis.length === 0) {
+            console.log('Não há clientes titulares disponíveis para check-in.');
+            return;
+        }
+
+        clientesTitularesDisponiveis.forEach((cliente, index) => {
             console.log(`${index + 1}. Nome: ${cliente.Nome}`);
         });
-    
+
         const numeroCliente = this.entrada.receberNumero('Escolha o cliente titular: ');
-        if (numeroCliente < 1 || numeroCliente > this.clientes.length) {
+        if (numeroCliente < 1 || numeroCliente > clientesTitularesDisponiveis.length) {
             console.log('Número de cliente inválido.');
             return;
         }
-    
-        const clienteEscolhido = this.clientes[numeroCliente - 1];
-        const dataCheckIn = new Date(); 
-    
+
+        const clienteEscolhido = clientesTitularesDisponiveis[numeroCliente - 1];
+
+        const dataCheckIn = new Date();
+
         const hospedagem = new Hospedagem(acomodacaoEscolhida, clienteEscolhido, dataCheckIn);
         this.hospedagens.push(hospedagem);
-    
+
         acomodacaoEscolhida.associarHospedagem(hospedagem);
-    
+
         console.log(`Check-in realizado com sucesso para o hóspede ${clienteEscolhido.Nome}.`);
     }
-    
+
+
     checkOut(): void {
         console.log("Iniciando check-out...");
         if (this.hospedagens.length === 0) {
             console.log('Não há hospedagens atuais.');
             return;
         }
-    
+
         console.log('Hospedagens atuais:');
         this.hospedagens.forEach((hospedagem, index) => {
             if (hospedagem.DataCheckOut === null) {
                 console.log(`${index + 1}. Hóspede: ${hospedagem.Titular.Nome}, Acomodação: ${hospedagem.Acomodacao.NomeAcomadacao}`);
             }
         });
-    
+
         const numeroHospedagem = this.entrada.receberNumero('Escolha a hospedagem para check-out: ');
         if (numeroHospedagem < 1 || numeroHospedagem > this.hospedagens.length) {
             console.log('Número de hospedagem inválido.');
             return;
         }
-    
+
         const hospedagemEscolhida = this.hospedagens[numeroHospedagem - 1];
         if (hospedagemEscolhida.DataCheckOut !== null) {
             console.log('Esta hospedagem já foi finalizada.');
             return;
         }
-    
+
         hospedagemEscolhida.DataCheckOut = new Date();
         console.log(`Check-out realizado com sucesso para o hóspede ${hospedagemEscolhida.Titular.Nome}.`);
-    
+
         const acomodacao = hospedagemEscolhida.Acomodacao;
         if (acomodacao) {
             acomodacao.desassociarHospedagem();
         }
     }
-    
+
 
     listarHospedagens(): void {
         console.log("Listando hospedagens atuais...");

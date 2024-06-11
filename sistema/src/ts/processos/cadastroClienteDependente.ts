@@ -15,11 +15,16 @@ export default class CadastroClienteDependente extends Processo {
         console.clear();
         console.log('Iniciando o cadastro de um novo cliente dependente...');
 
+        let clientesTitulares: Cliente[] = Armazem.InstanciaUnica.Clientes.filter(cliente => cliente.Titular === undefined);
+        
+        if (clientesTitulares.length === 0) {
+            console.log('Não há clientes titulares cadastrados.');
+            return;
+        }
+
         console.log('Clientes Titulares Cadastrados:');
-        Armazem.InstanciaUnica.Clientes.forEach((cliente, index) => {
-            if (cliente.Titular === undefined) {
-                console.log(`${index + 1}. ${cliente.Nome}`);
-            }
+        clientesTitulares.forEach((cliente, index) => {
+            console.log(`${index + 1}. ${cliente.Nome}`);
         });
 
         const indiceSelecionado = this.entrada.receberNumero('Selecione o número do cliente titular para associar o dependente:');

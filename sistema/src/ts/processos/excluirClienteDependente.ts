@@ -31,6 +31,11 @@ export default class ExcluirClienteDependente extends Processo {
         const clienteTitularSelecionado = this.obterClienteTitularPorIndice(indiceTitularSelecionado);
 
         if (clienteTitularSelecionado) {
+            if (clienteTitularSelecionado.estaHospedado()) {
+                console.log('Não é possível excluir um dependente enquanto o titular estiver hospedado.');
+                return;
+            }
+
             const indiceDependenteSelecionado = this.entrada.receberNumero('Selecione o número do dependente a ser excluído:');
             const dependenteSelecionado = clienteTitularSelecionado.Dependentes[indiceDependenteSelecionado - 1];
             

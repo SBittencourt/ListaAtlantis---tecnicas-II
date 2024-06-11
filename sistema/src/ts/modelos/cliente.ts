@@ -56,4 +56,8 @@ export default class Cliente {
     estaHospedado(): boolean {
         return Armazem.InstanciaUnica.Hospedagens.some(hospedagem => hospedagem.Titular === this && hospedagem.DataCheckOut === null);
     }
+
+    isTitular(): boolean {
+        return !this.titular; 
+    }
 }

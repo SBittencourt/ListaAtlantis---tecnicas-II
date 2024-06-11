@@ -16,5 +16,7 @@ export default class CadastroCpf extends Processo {
         let dataExpedicao = this.entrada.receberData('Qual a data de expedição do CPF?');
         let cpf = new Documento(numero, TipoDocumento.CPF, dataExpedicao);
         this.cliente.Documentos.push(cpf);
+
+        
     }
 }
