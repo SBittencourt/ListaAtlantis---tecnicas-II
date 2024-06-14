@@ -24,6 +24,8 @@ Entre na pasta e execute os seguintes comandos no terminal(cmd):
 
 ### `npm start`
 
+Para entrar no sistema, basta colocar um email e senhas qualquer, não há verificação de cadastro no momento.
+
 <hr>
 
 [➳ Retornar ao início](#Sumário)
