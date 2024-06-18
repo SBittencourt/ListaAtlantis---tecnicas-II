@@ -4,6 +4,8 @@ const CadastroCliente: React.FC = () => {
     const [tipoCliente, setTipoCliente] = useState<string>('titular');
     const [showModal, setShowModal] = useState<boolean>(false);
     const [formValues, setFormValues] = useState<any>({});
+    const [telefones, setTelefones] = useState<string[]>(['']);
+    const [documentos, setDocumentos] = useState<{ tipo: string, numero: string, dataExpedicao: string }[]>([{ tipo: 'cpf', numero: '', dataExpedicao: '' }]);
 
     const handleTipoClienteChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
         setTipoCliente(event.target.value);
@@ -16,11 +18,38 @@ const CadastroCliente: React.FC = () => {
         });
     };
 
+    const handleTelefoneChange = (index: number, event: React.ChangeEvent<HTMLInputElement>) => {
+        const newTelefones = telefones.map((telefone, i) => (
+            i === index ? event.target.value : telefone
+        ));
+        setTelefones(newTelefones);
+    };
+
+    const addTelefone = () => {
+        setTelefones([...telefones, '']);
+    };
+
+    const removeTelefone = (index: number) => {
+        setTelefones(telefones.filter((_, i) => i !== index));
+    };
+
+    const handleDocumentoChange = (index: number, field: string, value: string) => {
+        const newDocumentos = documentos.map((documento, i) => (
+            i === index ? { ...documento, [field]: value } : documento
+        ));
+        setDocumentos(newDocumentos);
+    };
+
+    const addDocumento = () => {
+        setDocumentos([...documentos, { tipo: 'cpf', numero: '', dataExpedicao: '' }]);
+    };
+
+    const removeDocumento = (index: number) => {
+        setDocumentos(documentos.filter((_, i) => i !== index));
+    };
+
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        // Aqui você pode adicionar a lógica de validação se desejar
-
-        // Simulação de cadastro bem-sucedido
         setShowModal(true);
     };
 
@@ -42,21 +71,87 @@ const CadastroCliente: React.FC = () => {
                                 <label htmlFor="nome">Nome:</label>
                                 <input type="text" className="form-control" id="nome" onChange={handleInputChange} />
                             </div>
+                            {documentos.map((documento, index) => (
+                                <div key={index} className="form-group">
+                                    <label>Documento {index + 1}:</label>
+                                    <div className="d-flex mb-2">
+                                        <select
+                                            className="form-control mr-2"
+                                            value={documento.tipo}
+                                            onChange={(e) => handleDocumentoChange(index, 'tipo', e.target.value)}
+                                        >
+                                            <option value="cpf">CPF</option>
+                                            <option value="rg">RG</option>
+                                            <option value="passaporte">Passaporte</option>
+                                        </select>
+                                        <input
+                                            type="text"
+                                            className="form-control mr-2"
+                                            placeholder="Número"
+                                            value={documento.numero}
+                                            onChange={(e) => handleDocumentoChange(index, 'numero', e.target.value)}
+                                        />
+                                        <input
+                                            type="date"
+                                            className="form-control mr-2"
+                                            placeholder="Data de Expedição"
+                                            value={documento.dataExpedicao}
+                                            onChange={(e) => handleDocumentoChange(index, 'dataExpedicao', e.target.value)}
+                                        />
+                                        <button
+                                            type="button"
+                                            className="btn btn-danger"
+                                            onClick={() => removeDocumento(index)}
+                                            disabled={documentos.length === 1}
+                                        >
+                                            -
+                                        </button>
+                                    </div>
+                                </div>
+                            ))}
+                            <button type="button" className="btn btn-secondary mb-2" onClick={addDocumento}>Adicionar Documento</button>
+                            {telefones.map((telefone, index) => (
+                                <div className="form-group" key={index}>
+                                    <label htmlFor={`telefone-${index}`}>Telefone {index + 1}:</label>
+                                    <div className="d-flex">
+                                        <input
+                                            type="text"
+                                            className="form-control"
+                                            id={`telefone-${index}`}
+                                            value={telefone}
+                                            onChange={(e) => handleTelefoneChange(index, e)}
+                                        />
+                                        <button
+                                            type="button"
+                                            className="btn btn-danger ml-2"
+                                            onClick={() => removeTelefone(index)}
+                                            disabled={telefones.length === 1}
+                                        >
+                                            -
+                                        </button>
+                                    </div>
+                                </div>
+                            ))}
+                            <button type="button" className="btn btn-secondary mb-2" onClick={addTelefone}>Adicionar Telefone</button>
                             <div className="form-group">
-                                <label htmlFor="cpf">CPF:</label>
-                                <input type="text" className="form-control" id="cpf" onChange={handleInputChange} />
+                                <label htmlFor="pais">País:</label>
+                                <input type="text" className="form-control" id="pais" onChange={handleInputChange} />
                             </div>
                             <div className="form-group">
-                                <label htmlFor="rg">RG:</label>
-                                <input type="text" className="form-control" id="rg" onChange={handleInputChange} />
+                                <label htmlFor="estado">Estado:</label>
+                                <input type="text" className="form-control" id="estado" onChange={handleInputChange} />
                             </div>
                             <div className="form-group">
-                                <label htmlFor="telefone">Telefone:</label>
-                                <input type="text" className="form-control" id="telefone" onChange={handleInputChange} />
+                                <label htmlFor="cidade">Cidade:</label>
+                                <input type="text" className="form-control" id="cidade" onChange={handleInputChange} />
                             </div>
                             <div className="form-group">
-                                <label htmlFor="endereco">Endereço:</label>
-                                <input type="text" className="form-control" id="endereco" onChange={handleInputChange} />
+                                <label htmlFor="rua">Rua:</label>
+                                <input type="text" className="form-control" id="rua" onChange={handleInputChange} />
+                            </div>
+                            <div className="form-group">
+                                <label htmlFor="cep">CEP:</label>
+                                <input type="text" className="form-control" id="cep" onChange={handleInputChange} />
                             </div>
                         </div>
                     </div>
@@ -68,14 +163,68 @@ const CadastroCliente: React.FC = () => {
                                 <label htmlFor="nome">Nome do Dependente:</label>
                                 <input type="text" className="form-control" id="nome" onChange={handleInputChange} />
                             </div>
-                            <div className="form-group">
-                                <label htmlFor="cpf">CPF do Dependente:</label>
-                                <input type="text" className="form-control" id="cpf" onChange={handleInputChange} />
-                            </div>
-                            <div className="form-group">
-                                <label htmlFor="rg">RG do Dependente:</label>
-                                <input type="text" className="form-control" id="rg" onChange={handleInputChange} />
-                            </div>
+                            {documentos.map((documento, index) => (
+                                <div key={index} className="form-group">
+                                    <label>Documento {index + 1}:</label>
+                                    <div className="d-flex mb-2">
+                                        <select
+                                            className="form-control mr-2"
+                                            value={documento.tipo}
+                                            onChange={(e) => handleDocumentoChange(index, 'tipo', e.target.value)}
+                                        >
+                                            <option value="cpf">CPF</option>
+                                            <option value="rg">RG</option>
+                                            <option value="passaporte">Passaporte</option>
+                                        </select>
+                                        <input
+                                            type="text"
+                                            className="form-control mr-2"
+                                            placeholder="Número"
+                                            value={documento.numero}
+                                            onChange={(e) => handleDocumentoChange(index, 'numero', e.target.value)}
+                                        />
+                                        <input
+                                            type="date"
+                                            className="form-control mr-2"
+                                            placeholder="Data de Expedição"
+                                            value={documento.dataExpedicao}
+                                            onChange={(e) => handleDocumentoChange(index, 'dataExpedicao', e.target.value)}
+                                        />
+                                        <button
+                                            type="button"
+                                            className="btn btn-danger"
+                                            onClick={() => removeDocumento(index)}
+                                            disabled={documentos.length === 1}
+                                        >
+                                            -
+                                        </button>
+                                    </div>
+                                </div>
+                            ))}
+                            <button type="button" className="btn btn-secondary mb-2" onClick={addDocumento}>Adicionar Documento</button>
+                            {telefones.map((telefone, index) => (
+                                <div className="form-group" key={index}>
+                                    <label htmlFor={`telefone-${index}`}>Telefone {index + 1}:</label>
+                                    <div className="d-flex">
+                                        <input
+                                            type="text"
+                                            className="form-control"
+                                            id={`telefone-${index}`}
+                                            value={telefone}
+                                            onChange={(e) => handleTelefoneChange(index, e)}
+                                        />
+                                        <button
+                                            type="button"
+                                            className="btn btn-danger ml-2"
+                                            onClick={() => removeTelefone(index)}
+                                            disabled={telefones.length === 1}
+                                        >
+                                            -
+                                        </button>
+                                    </div>
+                                </div>
+                            ))}
+                            <button type="button" className="btn btn-secondary mb-2" onClick={addTelefone}>Adicionar Telefone</button>
                             <div className="form-group">
                                 <label htmlFor="titular">Selecione o Titular:</label>
                                 <select className="form-control" id="titular">
@@ -83,7 +232,7 @@ const CadastroCliente: React.FC = () => {
                                     <option value="maria">Maria Oliveira</option>
                                     <option value="carlos">Carlos Santos</option>
                                     <option value="ana">Ana Souza</option>
-                                    <option value="fernanda">Fernanda Lima </option>
+                                    <option value="fernanda">Fernanda Lima</option>
                                     <option value="roberto">Roberto Almeida</option>
                                     <option value="paula">Paula Silva</option>
                                     <option value="marcelo">Marcelo Santos</option>
@@ -100,7 +249,7 @@ const CadastroCliente: React.FC = () => {
                 <div className="modal fade show" style={{ display: 'block' }}>
                     <div className="modal-dialog">
                         <div className="modal-content">
-                        <div className="modal-header">
+                            <div className="modal-header">
                                 <h5 className="modal-title">Cadastro Efetuado</h5>
                                 <button type="button" className="close" onClick={() => setShowModal(false)}>
                                     <span aria-hidden="true">&times;</span>
@@ -121,4 +270,3 @@ const CadastroCliente: React.FC = () => {
 };
 
 export default CadastroCliente;
-
