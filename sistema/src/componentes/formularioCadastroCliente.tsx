@@ -71,6 +71,14 @@ const CadastroCliente: React.FC = () => {
                                 <label htmlFor="nome">Nome:</label>
                                 <input type="text" className="form-control" id="nome" onChange={handleInputChange} />
                             </div>
+                            <div className="form-group">
+                                <label htmlFor="nomeSocial">Nome Social:</label>
+                                <input type="text" className="form-control" id="nomeSocial" onChange={handleInputChange} />
+                            </div>
+                            <div className="form-group">
+                                <label htmlFor="dataNascimento">Data de Nascimento:</label>
+                                <input type="date" className="form-control" id="dataNascimento" onChange={handleInputChange} />
+                            </div>
                             {documentos.map((documento, index) => (
                                 <div key={index} className="form-group">
                                     <label>Documento {index + 1}:</label>
@@ -163,6 +171,14 @@ const CadastroCliente: React.FC = () => {
                                 <label htmlFor="nome">Nome do Dependente:</label>
                                 <input type="text" className="form-control" id="nome" onChange={handleInputChange} />
                             </div>
+                            <div className="form-group">
+                                <label htmlFor="nomeSocial">Nome Social do Dependente:</label>
+                                <input type="text" className="form-control" id="nomeSocial" onChange={handleInputChange} />
+                            </div>
+                            <div className="form-group">
+                                <label htmlFor="dataNascimento">Data de Nascimento do Dependente:</label>
+                                <input type="date" className="form-control" id="dataNascimento" onChange={handleInputChange} />
+                            </div>
                             {documentos.map((documento, index) => (
                                 <div key={index} className="form-group">
                                     <label>Documento {index + 1}:</label>
@@ -202,29 +218,6 @@ const CadastroCliente: React.FC = () => {
                                 </div>
                             ))}
                             <button type="button" className="btn btn-secondary mb-2" onClick={addDocumento}>Adicionar Documento</button>
-                            {telefones.map((telefone, index) => (
-                                <div className="form-group" key={index}>
-                                    <label htmlFor={`telefone-${index}`}>Telefone {index + 1}:</label>
-                                    <div className="d-flex">
-                                        <input
-                                            type="text"
-                                            className="form-control"
-                                            id={`telefone-${index}`}
-                                            value={telefone}
-                                            onChange={(e) => handleTelefoneChange(index, e)}
-                                        />
-                                        <button
-                                            type="button"
-                                            className="btn btn-danger ml-2"
-                                            onClick={() => removeTelefone(index)}
-                                            disabled={telefones.length === 1}
-                                        >
-                                            -
-                                        </button>
-                                    </div>
-                                </div>
-                            ))}
-                            <button type="button" className="btn btn-secondary mb-2" onClick={addTelefone}>Adicionar Telefone</button>
                             <div className="form-group">
                                 <label htmlFor="titular">Selecione o Titular:</label>
                                 <select className="form-control" id="titular">
