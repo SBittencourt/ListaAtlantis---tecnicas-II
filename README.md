@@ -1,5 +1,5 @@
 <h1 align="center">Listas técnica de programação II - Atlantis 💧</h1>
-<H5 align="center"> Status do projeto: em andamento</H5>
+<H5 align="center"> Status do projeto: Finalizado</H5>
 
 <hr> 
 
@@ -22,7 +22,7 @@ Projeto desenvolvido para a aula de técnicas de programação I da FATEC-SJC, u
 | 2 | Concluído | [Atv II](https://github.com/SBittencourt/ListaAtlantis---tecnicas-II/tree/AtvII) |  
 | 3 | Concluído | [Atv III](https://github.com/SBittencourt/ListaAtlantis---tecnicas-II/tree/AtvIII) | 
 | 4 | Concluído | [Atv IV](https://github.com/SBittencourt/ListaAtlantis---tecnicas-II/tree/AtvIV) |
-| 5 | Não iniciado | [Atv V](https://github.com/SBittencourt/ListaAtlantis---tecnicas-II/tree/AtvV) |
+| 5 | Não realizada| [Atv V](https://github.com/SBittencourt/ListaAtlantis---tecnicas-II/tree/AtvV) |
 
 
 [➳ Retornar ao início](#Sumário)
